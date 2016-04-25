@@ -1,0 +1,34 @@
+After Action Report
+
+I had to first create a function that takes a grammar and returns
+a function that takes in an acceptor and a fragment. This function
+that is returned must create an alternative list for the starting
+symbol of the grammar. Then it must iterate thorugh the alternative
+list, and check if each element of the list matches with the fragment.
+For each element, add the rule to the derivation and iterate through
+its symbols. If the symbol is non terminal match it with the fragment.
+If it does match, remove the fragment and check the next element. If
+no elements are left then return an option tuple of derivation, fragment.
+Anytime an element doesn't match return None and the funciton iterating
+through the alternative list will try the next element. If the symbol is
+a terminal, then we have to go through the alternative list of that non
+terminal using the function that iterates through an alternative list.
+Since all these functions are calling one another, they must be mutually
+recursive. The matcher function is only called once, at the start, but
+depending on how many non-terminals there are, the functions will call
+one another multiple times in order to find a matching derivation.
+If an element of the alternative list was found, then we must check the
+derivation and fragment with the acceptor. If the return value is valid,
+then we return that to the calling function, otherwise we try the next
+element in the list. My function did not work in test case 4
+due to the fact that N Term; N Binop; N Expr was not matched but
+rather the N Term was matched by the Expr non terminal. I don't know
+why this is. All the other test cases passed. This homework
+had a lot of functions calling themselves recursively. At first
+I tried to not have them mutually recursive, but both functions
+rely on one another. When my functions were not mutually recursive,
+only one could call the other, but the inverse was not allowed, which
+is why I decided to use mutual recursion. I also had a matcher function
+that was only called once in order to simplify the parse_prefix function.
+In this way, the result of the computation always returns to the starting
+matcher function.

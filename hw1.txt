@@ -1,0 +1,22 @@
+I solved the coding problem by first learning as best I could the
+Ocaml language. Then I created the simpler functions.
+Since Ocaml is a functional language, I used it's coding style
+to the best of my ability. For example, I didn't use iterative programming
+even though it is valid in Ocaml. I also used the List module very
+extensively throughout my code because I am iterating through arrays a lot.
+Using my math background I also learned that the equal_sets function
+can be implemented by using the subset function and using double inclusion.
+The other functions are implemented similarly (using previous code).
+Knowing about fixed points and periodic points allowed me to implement
+the next two functions easily. I only exit the function when there is a
+fixed point or a periodic point, otherwise it loops infinitely which
+is okay for this homework.
+
+For the blind_alley_rules function, I first used the fixed point function
+to create a list of symbols that are terminated. I used that list in itself
+to test the rules that are able to be terminated by comparing the symbols of
+each rule to the list of symbols that can be terminated. If all it's symbols are
+in able to be terminated, then I added that symbol to the list. Once the list
+stop growing, then I went through the rules and returned a list of rules that
+have a starting symbol in the list of terminating symbols I created using the
+fixed point function.
